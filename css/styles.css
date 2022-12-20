@@ -1,0 +1,24 @@
+html, body{
+	margin: 0;
+	background: #eee;
+}
+
+
+.progress_width{
+	width: 500px;
+	height: 10px;
+	margin: auto;
+	border: 1px solid #000;
+	color: #fff;
+}
+#progressBar{
+	width: 500;
+	height: 10px;
+	background-color: #f00;
+}
+
+.timer-with-progress {
+	width: 550px;
+	display: flex;
+	flex-direction: row;
+}
