@@ -7,13 +7,14 @@ html, body{
 .progress_width{
 	width: 500px;
 	height: 10px;
-	margin: auto;
+	border-radius: 5px;
 	border: 1px solid #000;
 	color: #fff;
 }
 #progressBar{
 	width: 500;
 	height: 10px;
+	border-radius: 5px;
 	background-color: #f00;
 }
 
@@ -21,4 +22,35 @@ html, body{
 	width: 550px;
 	display: flex;
 	flex-direction: row;
+}
+
+.pic img {
+	width: 600px;
+}
+
+.pic {
+	border: #000 solid 2px;
+}
+
+.t4-bar {
+	width: 300px;
+	height: 200px;
+	background-color: green;
+	
+
+}
+
+.timer-cont {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+}
+
+
+.progressBar5 {
+	width: 500;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #f00;
+
 }
