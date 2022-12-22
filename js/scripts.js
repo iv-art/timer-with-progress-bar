@@ -1,38 +1,15 @@
 window.addEventListener('load', function(){
-let startTime = 90;
+let startTime = 15;
 
-	let t2 = new TimerFormatted('.timer2', startTime);
-	progress();
+	let t2 = new TimerWithBar('.timer2', startTime, '.progressBar2');
+
 
 	let t3 = new TimerWithBar('.timer3', startTime, 'img');
 
 let t4 = new TimerWithBar('.timer4', startTime, '.t4-bar');
 let t5 = new TimerWithBar('.timer5', startTime, '.progressBar5');
-t4.showBar;
-	function progress()
-    {
-        
-        let width = document.getElementById('progressBar').parentNode.clientWidth;
-		let i=width;
-		let step = width / startTime;
-        let id = setInterval(reduce, 1000);
-        
-        function reduce()
-        {
-            if(i>0)
-            {
-                i -= step;
-                if(!document.getElementById('progressBar').setAttribute("style","width: "+i+"px;"))
-                   { document.getElementById('progressBar').style.width = i;}
-                
-            }
-            else
-            {
-                clearInterval(id);
-				document.getElementById('progressBar').style.width = 0;
-            }
-        }
-    }
+
+	
 	
 });
 
@@ -90,7 +67,8 @@ class TimerWithBar extends TimerFormatted {
 	constructor(boxSelector, initialTime, barSelector) {
 		super(boxSelector, initialTime);
 		this.barElement = document.querySelector(barSelector);
-		this.step = this.barElement.clientWidth / initialTime;
+		this.step = +(this.barElement.clientWidth / initialTime).toFixed(4);
+		this.widthReducedOnce = this.barElement.clientWidth;
 	}
  showBar = () => {
 	console.log(this.barElement);
@@ -104,10 +82,15 @@ class TimerWithBar extends TimerFormatted {
  }
 tick = () => {
 	super.tick();
-	let currentWidth = this.barElement.clientWidth;
+	
+	this.widthReducedOnce = +(this.widthReducedOnce - this.step).toFixed(4);
+	if (this.widthReducedOnce < 0) {
+		this.widthReducedOnce = 0;
+	}
 	let currentHeight = this.barElement.offsetHeight;
-	let newWidth = currentWidth - this.step;
-	this.barElement.style.width = `${newWidth}px`
+	
+	console.log(this.widthReducedOnce, this.step);
+	this.barElement.style.width = `${this.widthReducedOnce}px`
 	this.barElement.style.height = `${currentHeight}px`
 }
 
